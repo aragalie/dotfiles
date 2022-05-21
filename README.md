@@ -6,7 +6,7 @@ I don't want to waste time setting up my machines, so I spent years maintaining 
 
 ## Chezmoi
 
-The latest version of my dotfiles are managed with [Chezmoi](https://chezmoi.io). I was using [Dotbot](https://github.com/narze/dotfiles/tree/dotbot) & [Ansible](https://github.com/narze/dotfiles/tree/ansible) before.
+The latest version of my dotfiles are managed with [Chezmoi](https://chezmoi.io). 
 
 ### TODOs
 
@@ -24,7 +24,7 @@ The latest version of my dotfiles are managed with [Chezmoi](https://chezmoi.io)
 ## Usage
 
 ```shell
-ASK=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/narze/dotfiles/master/remote_install.sh) -x encrypted -v"
+ASK=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/aragalie/dotfiles/master/remote_install.sh) -x encrypted -v"
 ```
 
 First installation will ask for your name so you can customize a bit, and it will skip the encryped files, since you have to retrieve the GPG private key manually later. Removing `ASK=1` will use my names for the machine.
@@ -123,15 +123,6 @@ Here are the list of issues I've found on running the script on M1 Macbooks (Tes
     fi
   fi
   ```
-
-- Rubygems : Specific bundler config is needed (See `bundle config`)
-- Yabai : Cannot use space switch commands (eg. `yabai -m space --focus 1`) even if SIP is disabled
-  <details>
-    <summary>Workaround</summary>
-
-  Setup native shortcut keys manually and use non-consuming shortcut settings (`->`) in `skhd`
-  ![image](https://user-images.githubusercontent.com/248741/111079897-a77e6380-852e-11eb-92d5-42f743dc3060.png)
-  </details>
 
 ### ~~Apple Silicon specific commands~~
 

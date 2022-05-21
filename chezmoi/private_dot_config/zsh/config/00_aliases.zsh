@@ -60,7 +60,7 @@ alias gfo="git fetch origin"
 alias gpr="gh pr"
 alias gq="ghq get -l -p"
 gqe() { ghq get -l -p eventpop/$* }
-gqn() { ghq get -l -p narze/$* }
+gqn() { ghq get -l -p alex/$* }
 gpuo() { git push -u origin $(git rev-parse --abbrev-ref HEAD) }
 alias gmd="git merge develop"
 alias grm="if git show-ref -q --heads main; then; git rebase main; else; git rebase master; fi"
@@ -90,7 +90,6 @@ alias b="bundle"
 alias be="bundle exec"
 alias bi="bundle install"
 alias bf="bh | fzy"
-alias blog='gq narze/monosor.com && git pull'
 alias br="brew"
 alias brci="brew install --cask"
 alias bri="brew install"
@@ -101,7 +100,7 @@ alias c='cd ~/Code && ls'
 alias c.="code ."
 alias cd.="code --user-data-dir /tmp/code-data/ --disable-extensions ."
 # alias c.="RUBYOPT=--jit code ."
-alias cn='cd ~/Code/narze && ls'
+alias cn='cd ~/Code/alex && ls'
 alias co="RUBYOPT=--jit code"
 alias cwd='pwd | pbcopy'
 f() {
@@ -158,7 +157,6 @@ alias vl="vault"
 alias wa="watch "
 alias watch="watch "
 alias wh="which "
-alias wiki="gq narze/knowledge"
 alias ya='yarn'
 alias yd='yarn dev'
 alias yr='yarn run'
