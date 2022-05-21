@@ -20,4 +20,4 @@ else
   chezmoi=chezmoi
 fi
 
-exec "$chezmoi" init --apply alex -x encrypted
+exec "$chezmoi" init --apply aragalie -x encrypted
