@@ -21,7 +21,9 @@ set -eufo pipefail
 
 {{ $casks := list
   "google-drive"
+  "dropbox"
   "iterm2"
+  "fig"
 
   "slack"
   "spotify"
@@ -36,6 +38,17 @@ set -eufo pipefail
   "brave-browser"
   "skype"
   "little-snitch"
+  "deepl"
+  "private-internet-access"
+  "pdf-expert"
+  "notion"
+  "calibre"
+  "handbrake"
+  "istat-menus"
+  "obs"
+  "post-haste"
+  "steam"
+  "transmission"
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF || :
