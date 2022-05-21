@@ -21,8 +21,6 @@ set -eufo pipefail
   "homebrew/services"
   "homebrew/cask"
   "homebrew/cask-fonts"
-  "koekeishiya/formulae"
-  "yqrashawn/goku"
 
 -}}
 
@@ -47,13 +45,9 @@ set -eufo pipefail
   "terminal-notifier"
   "tmux"
   "tree"
-  "watch"
   "zsh"
 
-  "FelixKratz/formulae/sketchybar"
-
   "chezmoi"
-  "exa"
   "ffmpeg"
   "fzf"
 -}}
@@ -78,8 +72,5 @@ cask "{{ . }}"
 EOF
 
 echo "Start services..."
-
-# {{- if not (eq .computer_name "alex-m1") }}
-# {{- end }}
 
 {{ end -}}

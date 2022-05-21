@@ -1,7 +1,9 @@
 #!/bin/sh
 
-# Use with Github CodeSpaces
-# https://github.com/twpayne/dotfiles/blob/master/install.sh
+# Install remotely from single shell command
+
+echo "Installing Xcode Command Line Tools"
+xcode-select --install
 
 set -e # -e: exit on error
 
@@ -20,4 +22,5 @@ else
   chezmoi=chezmoi
 fi
 
-exec "$chezmoi" init -v --apply aragalie -x encrypted
+# exec: replace current process with chezmoi init
+exec "$chezmoi" init -v --apply alex

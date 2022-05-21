@@ -1,4 +1,0 @@
-[global]
-  # skip_dotenv = true # deprecated
-  load_dotenv = false
-  strict_env = true
