@@ -20,34 +20,24 @@ set -eufo pipefail
 {{ $brews := list -}}
 
 {{ $casks := list
-  "1password"
-  "alfred"
-  "raycast"
-  "beardedspice"
-  "discord"
-  "docker"
-  "flux"
-  "google-chrome"
   "google-drive"
-  "hammerspoon"
-  "karabiner-elements"
   "kitty"
-  "keyboard-maestro"
-  "keycastr"
-  "leapp"
-  "microsoft-edge"
-  "openvpn-connect"
-  "opera-gx"
-  "postgres-unofficial"
+  "iterm2"
+
   "postman"
-  "rescuetime"
   "slack"
   "spotify"
-  "startupizer"
-  "syncthing"
   "telegram"
   "the-unarchiver"
   "visual-studio-code"
+
+  "docker"
+  "spotify"
+  "telegram"
+  "discord"
+  "brave-browser"
+  "skype"
+  "little-snitch"
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF || :

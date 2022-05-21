@@ -16,24 +16,30 @@ echo "Install common macOS packages"
 set -eufo pipefail
 
 {{ $taps := list
+  "homebrew/bundle"
+  "homebrew/core"
+  "homebrew/services"
   "homebrew/cask"
   "homebrew/cask-fonts"
   "koekeishiya/formulae"
   "yqrashawn/goku"
+
 -}}
 
 {{ $brews := list
-  "gh"
-  "ghq"
+  "openssh"
+  "coreutils"
   "git"
-  "git-delta"
+
+  "yarn"
+  "zsh-syntax-highlighting"
+  "wget"
+  "stow"
+  "chezmoi"
+
 
   "mackup"
   "mas"
-
-  "mpc"
-  "mpd"
-  "ncmpcpp"
 
   "neofetch"
   "neovim"
@@ -44,28 +50,12 @@ set -eufo pipefail
   "watch"
   "zsh"
 
-  "helm"
-  "kubernetes-cli"
-  "kubectx"
-  "stern"
-
-  "koekeishiya/formulae/skhd"
-  "koekeishiya/formulae/yabai"
-  "yqrashawn/goku/goku"
   "FelixKratz/formulae/sketchybar"
 
-  "bat"
   "chezmoi"
   "exa"
   "ffmpeg"
-  "gpg"
-  "jq"
   "fzf"
-  "fzy"
-  "shellcheck"
-  "switchaudio-osx"
-  "zoxide"
-  "task"
 -}}
 
 {{ $casks := list
@@ -73,13 +63,6 @@ set -eufo pipefail
   "font-fira-code-nerd-font"
   "font-fantasque-sans-mono"
   "font-fantasque-sans-mono-nerd-font"
-
-  "qlmarkdown"
-  "quicklook-json"
-  "qlimagesize"
-  "suspicious-package"
-  "quicklookase"
-  "qlvideo"
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF || :
@@ -96,10 +79,7 @@ EOF
 
 echo "Start services..."
 
-# {{- if not (eq .computer_name "narze-m1-pro") }}
-# brew services start skhd
-# brew services start yabai
+# {{- if not (eq .computer_name "alex-m1") }}
 # {{- end }}
-brew services start goku
 
 {{ end -}}
