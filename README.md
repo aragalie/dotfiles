@@ -24,7 +24,7 @@ The latest version of my dotfiles are managed with [Chezmoi](https://chezmoi.io)
 ## Usage
 
 ```shell
-ASK=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/aragalie/dotfiles/master/remote_install.sh) -x encrypted -v"
+ASK=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/aragalie/dotfiles-with-codespaces/master/remote_install.sh) -x encrypted -v"
 ```
 
 First installation will ask for your name so you can customize a bit, and it will skip the encryped files, since you have to retrieve the GPG private key manually later. Removing `ASK=1` will use my names for the machine.
@@ -40,9 +40,6 @@ To change the data or script, `chezmoi cd`, edit them, then run `chezmoi apply`.
   - Login to App Store before running (If not `mas` will skip installation and open the App Store for you)
   - Preferences -> Change input source switch to CMD+Space, and Spotlight search to Option+Space
   - Run `mackup restore` once after Syncthing is installed, logged-in, and `~/Sync/Mackup` is synced.
-  - Connect to Zerotier private network to mount NAS
-  - Setup Arq for backup
-  - Disable Boom 3D keyboard shortcuts
   - Disable Timing keyboard shortcuts
 
 ## Features
@@ -84,7 +81,6 @@ I'll separate the dotfiles script to install zsh or fish separately to save some
 
 Here are the list of issues I've found on running the script on M1 Macbooks (Tested on both Macbook Air & Macbook Pro)
 
-- ~~dotbot/brew fails silently : Now they need XCode to be installed first (via App Store), rather than just XCode CLT~~ Seems to be fixed now
 - ~~Kitty.app installing binaries from Homebrew does get you x86, now you have to [Build from source](https://sw.kovidgoyal.net/kitty/build.html)~~
 
   - ```shell
