@@ -5,9 +5,6 @@ if [ -d "$HOME/.local/share/lunarvim" ]; then
   exit 0
 fi
 
-# Add asdf shims to path.
-export PATH="$PATH:$HOME/.asdf/shims:$HOME/.asdf/bin"
-
 # Fetch the LunarVim script.
 curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh >/tmp/install-lunarvim.sh
 chmod +x /tmp/install-lunarvim.sh
@@ -24,5 +21,9 @@ fi
 
 # Cleanup installation script.
 rm /tmp/install-lunarvim.sh
+
+# Install configs
+git clone https://github.com/aragalie/lvim.git ~/.config/lvim
+lvim +LvimUpdate +LvimCacheReset +q
 
 echo "LunarVim installed."

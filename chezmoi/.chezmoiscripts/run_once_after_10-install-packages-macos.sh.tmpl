@@ -31,34 +31,20 @@ set -eufo pipefail
   "nvm"
 
   "yarn"
-  "zsh-syntax-highlighting"
   "wget"
-  "stow"
   "chezmoi"
 
 
   "mackup"
   "mas"
 
-  "neofetch"
-  "neovim"
-  "reattach-to-user-namespace"
-  "terminal-notifier"
-  "kitty"
+  "--HEAD neovim"
   "tmux"
-  "tree"
-  "zsh"
 
-  "chezmoi"
-  "ffmpeg"
   "fzf"
 -}}
 
 {{ $casks := list
-  "font-comic-mono"
-  "font-fira-code-nerd-font"
-  "font-fantasque-sans-mono"
-  "font-fantasque-sans-mono-nerd-font"
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF || :
