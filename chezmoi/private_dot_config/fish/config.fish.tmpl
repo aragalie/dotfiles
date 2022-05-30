@@ -20,3 +20,6 @@ set -Ux EDITOR lvim
 # Chezmoi cached variables
 set -x CM_computer_name {{ .computer_name }}
 set -x CM_hostname {{ .hostname }}
+
+# use nvm default option
+nvm use default --silent

@@ -13,9 +13,6 @@ echo "Install Mac App Store apps via mas"
 
 set -ufo pipefail
 
-{{- if not (eq .computer_name "alex-m1") }}
-mas account &> /dev/null
-
 if [[ $? -ne 0 ]]; then
   echo "Please login to Mac app store first, then run command again"
   mas open
