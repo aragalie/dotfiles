@@ -1,11 +1,2 @@
 {{ if eq .chezmoi.os "darwin" }}
 {{ end -}}
-
-[".tmux.conf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/narze/.tmux/master/.tmux.conf"
-    refreshPeriod = "168h"
-[".tmux.conf.local"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/narze/.tmux/master/.tmux.conf.local"
-    refreshPeriod = "168h"
