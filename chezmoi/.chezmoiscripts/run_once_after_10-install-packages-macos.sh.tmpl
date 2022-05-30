@@ -43,6 +43,13 @@ set -eufo pipefail
 -}}
 
 {{ $casks := list
+
+  "koekeishiya/formulae/yabai"
+  "koekeishiya/formulae/skhd"
+
+  "--HEAD neovim"
+  "kitty"
+
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF || :
