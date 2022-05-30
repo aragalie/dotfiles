@@ -16,7 +16,6 @@ To change the data or script, `chezmoi cd`, edit them, then run `chezmoi apply`.
   - Run Setapp installer manually after the `brew` script is run.
   - Login to App Store before running (If not `mas` will skip installation and open the App Store for you)
   - Preferences -> Change input source switch to CMD+Space, and Spotlight search to Option+Space
-  - Run `mackup restore` once after Syncthing is installed, logged-in, and `~/Sync/Mackup` is synced.
   - Disable Timing keyboard shortcuts
 
 ## Features
@@ -35,8 +34,6 @@ macos                          Run macos script
   - [Homebrew](https://brew.sh)
   - [Homebrew Cask](https://github.com/Homebrew/homebrew-cask)
   - [Chezmoi](https://chezmoi.io)
-  - [zsh](https://zsh.org) with [zsh4humans](https://github.com/romkatv/zsh4humans) + [Powerlevel10k](https://github.com/romkatv/powerlevel10k) theme
   - [fish](https://fishshell.com) with [fisher](https://github.com/jorgebucaran/fisher) + [Tide](https://github.com/IlanCosman/tide) theme
-  - [tmux](https://github.com/tmux/tmux/)
   - [macOS defaults](https://mths.be/macos)
   - etc.
