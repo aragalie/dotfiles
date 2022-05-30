@@ -21,10 +21,16 @@ set -eufo pipefail
   "homebrew/services"
   "homebrew/cask"
   "homebrew/cask-fonts"
+  "koekeishiya/formulae"
 
 -}}
 
 {{ $brews := list
+  "koekeishiya/formulae/yabai"
+  "koekeishiya/formulae/skhd"
+
+  "neovim --HEAD"
+
   "openssh"
   "coreutils"
   "git"
@@ -42,13 +48,14 @@ set -eufo pipefail
   "fzf"
 -}}
 
-{{ $brewinstall := list
+{{ $casks := list
 
-  "koekeishiya/formulae/yabai"
-  "koekeishiya/formulae/skhd"
-
-  "--HEAD neovim"
+  "font-fira-code-nerd-font"
   "kitty"
+  
+
+  "kitty"
+
 
 -}}
 
@@ -58,9 +65,6 @@ tap "{{ . }}"
 {{ end }}
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
-{{ end }}
-{{ range ($brewinstall | sortAlpha | uniq) -}}
-brew install "{{ . }}"
 {{ end }}
 {{ range ($casks | sortAlpha | uniq) -}}
 cask "{{ . }}"
