@@ -42,7 +42,7 @@ set -eufo pipefail
   "fzf"
 -}}
 
-{{ $casks := list
+{{ $brewinstall := list
 
   "koekeishiya/formulae/yabai"
   "koekeishiya/formulae/skhd"
@@ -58,6 +58,9 @@ tap "{{ . }}"
 {{ end }}
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
+{{ end }}
+{{ range ($brewinstall | sortAlpha | uniq) -}}
+brew install "{{ . }}"
 {{ end }}
 {{ range ($casks | sortAlpha | uniq) -}}
 cask "{{ . }}"
