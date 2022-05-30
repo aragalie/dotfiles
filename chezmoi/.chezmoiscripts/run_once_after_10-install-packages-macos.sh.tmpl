@@ -29,8 +29,6 @@ set -eufo pipefail
   "koekeishiya/formulae/yabai"
   "koekeishiya/formulae/skhd"
 
-  "--HEAD neovim"
-
   "openssh"
   "coreutils"
   "git"
@@ -70,6 +68,8 @@ brew "{{ . }}"
 cask "{{ . }}"
 {{ end }}
 EOF
+
+brew install --HEAD neovim
 
 echo "Start services..."
 
