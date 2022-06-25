@@ -1,8 +1,9 @@
 -- Neovim
 -- =========================================
-lvim.format_on_save = false
+lvim.format_on_save = true
 lvim.leader = " "
-lvim.colorscheme = "pablo"
+lvim.colorscheme = "pablo" -- set to a custom theme
+lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 lvim.debug = false
 vim.lsp.set_log_level "warn"
 lvim.log.level = "warn"
@@ -11,20 +12,20 @@ require("user.neovim").config()
 
 -- Customization
 -- =========================================
-lvim.builtin.terminal.direction =  "horizontal"
+lvim.builtin.terminal.direction = "horizontal"
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false } -- if you want microsoft to abuse your soul
 lvim.builtin.lastplace = { active = false } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
 lvim.builtin.presence = { active = false } -- change to true if you want discord presence
-lvim.builtin.orgmode = { active = true } -- change to true if you want orgmode.nvim
+lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
 lvim.builtin.dap.active = false -- change this to enable/disable debugging
 lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
 lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = true } -- change this to enable/disable vim-test, ultest
-lvim.builtin.cheat = { active = true } -- enable cheat.sh integration
+lvim.builtin.cheat = { active = false } -- enable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 lvim.builtin.smooth_scroll = "cinnamon" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
@@ -38,6 +39,7 @@ lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
 lvim.builtin.csv_support = false -- enable/disable csv support
 lvim.builtin.sidebar = { active = false } -- enable/disable sidebar
 lvim.builtin.async_tasks = { active = false } -- enable/disable async tasks
+lvim.builtin.winbar_provider = "filename" -- can be "filename" or "treesitter" or ""
 lvim.builtin.metals = {
   active = false, -- enable/disable nvim-metals for scala development
   fallbackScalaVersion = "2.13.7",
@@ -51,9 +53,15 @@ lvim.builtin.editorconfig = { active = true } -- enable/disable editorconfig
 lvim.builtin.global_statusline = false -- set true to use global statusline
 lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
 lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim code_actions
+lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
 
 local user = os.getenv "USER"
 if user and user == "alex" then
+  lvim.builtin.tmux_lualine = true
+  if lvim.builtin.tmux_lualine then
+    vim.opt.cmdheight = 1 -- WARN: =0 only works with the latest neovim
+    vim.g.tpipeline_cursormoved = 1
+  end
   lvim.builtin.custom_web_devicons = true
   lvim.use_icons = false -- only set to false if you know what are you doing
   lvim.builtin.sell_your_soul_to_devil = { active = true, prada = false }
@@ -61,7 +69,7 @@ if user and user == "alex" then
   lvim.builtin.csv_support = true
   lvim.builtin.async_tasks.active = true
   lvim.builtin.dap.active = true
-  lvim.builtin.sql_integration.active = false
+  lvim.builtin.sql_integration.active = true
   vim.g.instant_username = user
   lvim.builtin.collaborative_editing.active = true
   lvim.builtin.file_browser.active = true

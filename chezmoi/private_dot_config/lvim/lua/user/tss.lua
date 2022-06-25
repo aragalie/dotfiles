@@ -27,6 +27,10 @@ M.buf_map = function(bufnr, mode, target, source, opts)
   M.map(mode, target, source, get_map_options(opts))
 end
 
+M.t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 M.input = function(keys, mode)
   api.nvim_feedkeys(M.t(keys), mode or "m", true)
 end
@@ -132,6 +136,8 @@ end
 _G.css_to_js = css_to_js
 
 local function on_attach(client, bufnr)
+  client.server_capabilities.documentFormattingProvider = false
+  client.server_capabilities.documentRangeFormattingProvider = false
   require("lvim.lsp").common_on_attach(client, bufnr)
   api.nvim_buf_create_user_command(bufnr, "CssToJs", css_to_js, { range = true })
   M.buf_map(bufnr, "n", "gs", ":TypescriptRemoveUnused<CR>")
@@ -140,7 +146,6 @@ local function on_attach(client, bufnr)
   M.buf_map(bufnr, "n", "gA", ":TypescriptFixAll<CR>")
   M.buf_map(bufnr, "n", "gI", ":TypescriptRenameFile<CR>")
   M.buf_map(bufnr, "i", "${", change_template_string_quotes, { nowait = true })
-  api.nvim_buf_create_user_command(bufnr, "CssToJs", css_to_js, { range = true })
   M.buf_map(bufnr, "n", "gx", ":set opfunc=v:lua.css_to_js<CR>g@")
   M.buf_map(bufnr, "n", "gxx", ":CssToJs<CR>")
   M.buf_map(bufnr, "v", "gx", ":CssToJs<CR>")

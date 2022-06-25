@@ -116,9 +116,23 @@ augroup END
     command = "lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }",
   })
 
+  create_aucmd("CursorHold", {
+    callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+      vim.diagnostic.open_float(nil, opts)
+    end
+  })
+
   local codelens_viewer = "lua require('user.codelens').show_line_sign()"
   local user = os.getenv "USER"
-  if user and user == "abz" then
+  if user and user == "alex" then
     create_aucmd("CursorHold", {
       group = "_lvim_user",
       pattern = { "*.rs", "*.go", "*.ts", "*.tsx" },
@@ -168,8 +182,8 @@ M.make_run = function()
         "n",
         "<leader>r",
         "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='python "
-          .. vim.fn.expand "%"
-          .. ";read',count=2,direction='float'})<CR>"
+        .. vim.fn.expand "%"
+        .. ";read',count=2,direction='float'})<CR>"
       )
       vim.keymap.set(
         "n",
