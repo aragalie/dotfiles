@@ -1,6 +1,6 @@
 -- Neovim
 -- =========================================
-lvim.format_on_save = true
+lvim.format_on_save = false
 lvim.leader = " "
 lvim.colorscheme = "pablo" -- set to a custom theme
 lvim.builtin.time_based_themes = true -- set false to use your own configured theme
@@ -25,7 +25,7 @@ lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
 lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = true } -- change this to enable/disable vim-test, ultest
-lvim.builtin.cheat = { active = false } -- enable cheat.sh integration
+lvim.builtin.cheat = { active = true } -- enable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 lvim.builtin.smooth_scroll = "cinnamon" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
@@ -66,7 +66,7 @@ if user and user == "alex" then
   lvim.use_icons = false -- only set to false if you know what are you doing
   lvim.builtin.sell_your_soul_to_devil = { active = true, prada = false }
   lvim.lsp.document_highlight = false
-  lvim.builtin.csv_support = true
+  lvim.builtin.csv_support = false
   lvim.builtin.async_tasks.active = true
   lvim.builtin.dap.active = true
   lvim.builtin.sql_integration.active = true
@@ -79,7 +79,7 @@ if user and user == "alex" then
   lvim.builtin.refactoring.active = true
   require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end
--- lvim.lsp.diagnostics.virtual_text = false -- remove this line if you want to see inline errors
+lvim.lsp.diagnostics.virtual_text = true -- remove this line if you want to see inline errors
 lvim.builtin.latex = {
   view_method = "skim", -- change to zathura if you are on linux
   preview_exec = "/Applications/Skim.app/Contents/SharedSupport/displayline", -- change this to zathura as well
