@@ -1,0 +1,250 @@
+" =================== KNOWLEDGE =======================
+
+" Difference between all the different maps:
+"   https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
+" Ideavim actionlist:
+"   https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+" List of supported plugins:
+"   https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
+"   https://betterprogramming.pub/the-essential-ideavim-plugins-f939b4325180
+"
+
+" =================== PLUGINS =========================
+Plug 'terryma/vim-multiple-cursors'
+map mc <A-n>
+map mx <A-x>
+map mp <A-p>
+
+Plug 'tpope/vim-commentary'
+
+Plug 'easymotion/vim-easymotion')
+map <leader>F <Plug>(easymotion-s)
+map <leader>f <Plug>(easymotion-f)
+
+" built in search looks better
+nnoremap / :action Find<cr>
+" but preserve ideavim search
+nnoremap g/ /
+
+set NERDTree
+nnoremap <c-n> :NERDTreeToggle<CR>
+"nnoremap <c-n> :NERDTreeFocus<CR>
+
+" Map leader key
+let mapleader = ";"
+
+"The Escape button
+map <C-c> <Esc>
+
+map <c-e> <Action>(RecentFiles)
+map <c-c> <Action>(GotoClass)
+map <c-s> <Action>(EditorSelectWord)
+map <c-x> <Action>(Tool_External Tools_LunarVim)
+"map <Leader>s :action SaveAll<CR>
+map <leader>b <Action>(GotoDeclaration)
+map <leader>u :action GotoSuperMethod<CR>
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+"The Terminal.OpenInTerminal action let you open a new terminal
+"directly in the parent folder of the current file in the editor.
+"This is very useful with deeply nested folder structures, since
+"it avoids having to cd to the right folder."
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+set sneak
+set surround
+set noerrorbells
+
+
+" =================== GENERAL CONFIG ==================
+
+"Editing and Reloading the Config
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+"Use system clipboard from IdeaVim and vice-versa
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+"Enable relative line numbering
+set number relativenumber
+
+" Shows what mode Vim is in at the bottom of intellij
+set showmode
+
+" Uses the joining functionality from Intellij
+set ideajoin
+
+" Stay in the mode in which the editing started
+set idearefactormode=keep
+
+" See how many lines of history VIM has to remember
+set history=500
+
+
+" ================== VIM USER INTERFACE =================
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Always show current position
+set ruler
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" Speed up scrolling in Vim
+set ttyfast
+
+" No annoying sound on errors
+set visualbell
+set t_vb=
+set tm=500
+
+" ==================== TEXT, TAB AND INDENT RELATED ====================
+
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+" =============== MOVING AROUND, TABS, WINDOWS AND BUFFERS ========
+
+" Exit in and out of insert mode easily
+"imap jj <Esc>
+"imap jk <Esc>
+"imap JJ <Esc>
+"imap JK <Esc>
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+" Shortcutting split navigation
+map <c-h> <C-w>h
+map <c-j> <C-w>j
+map <c-k> <C-w>k
+map <c-l> <C-w>l
+
+" Tab navigation
+noremap <c-\> :action SplitVertically<CR>
+nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <c-=> :action Unsplit<CR>
+nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+
+
+
+" Keep visual selection
+vnoremap < <gv
+vnoremap > >gv
+
+" Navigate through method signatures
+map [[ <Action>(MethodUp)
+map ]] <Action>(MethodDown)
+
+nnoremap <Leader>e :action EditSourceInNewWindow<CR>
+nnoremap <Leader>n :action NextWindow<CR>
+nnoremap <Leader>q :action CloseContent<CR>
+nnoremap <Leader>qa :action CloseAllEditors<CR>
+
+
+" ================= EDITING MAPPINGS ===================
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Code refactoring
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+nnoremap ff :action SearchEverywhere<CR>
+nnoremap fc :action ReformatCode<CR>
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap cc :action CommentByLineComment<CR>
+vnoremap cc :action CommentByLineComment<CR>
+nnoremap <leader>r :action RenameElement<CR>
+nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+"nnoremap <leader>b :action Vcs.RollbackChangedLines<CR>
+"nnoremap <leader>f :action RenameFile<CR>
+nnoremap <leader>h :action HideAllWindows<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <leader>c :action CloseAllEditorsButActive<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+nnoremap <leader>p :action Refactorings.QuickListPopupAction<CR>
+nnoremap <Leader>=  :action ReformatCode<CR>
+nnoremap <leader>l :action RecentLocations<CR>
+nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>
+nnoremap <c-r> :action RecentFiles<CR>
+nnoremap <space><space> :action ShowErrorDescription<CR>
+
+nnoremap ,a :action GotoAction<CR>
+vnoremap ,a :action GotoAction<CR>
+nnoremap ,u :action Rerun<CR>
+nnoremap ,c :action GotoClass<CR>
+nnoremap ,R :action Run<CR>
+nnoremap ,d :action DebugClass<CR>
+nnoremap ,d :action ContextDebug<CR>
+nnoremap ,D :action Debug<CR>
+nnoremap ,f :action ChooseRunConfiguration<CR>
+nnoremap ,f :action RerunFailedTests<CR>
+nnoremap ,r :action ContextRun<CR>
+nnoremap ,t :action ActivateRunToolWindow<CR>
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap ,n :action ActivateDebugToolWindow<CR>
+nnoremap ,q :action CloseContent<CR>
+nnoremap ,x :action CloseAllEditors<CR>
+
+" ================= SEARCH MAPPINGS ===================
+nnoremap <c-/> :action FindInPath<CR>
+nnoremap <c-a> :action GotoAction<CR>
+nnoremap <c-f> :action GotoFile<CR>
+map <leader>u <Action>(FindUsages)
+map <leader>s <Action>(GotoRelated)
+map <leader>h <Action>(CallHierarchy)
+"nnoremap <leader>b :action ShowNavBar<CR>
+map <c-s> <Action>(FileStructurePopup)
+map <c-o> <Action>(GotoSymbol)
+
+" ================= WINDOW MAPPINGS ===================
+nnoremap <c-p> :action JumpToLastWindow<CR>
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <s-TAB> :action NextTab<CR>
