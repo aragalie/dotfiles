@@ -15,11 +15,22 @@ if status is-interactive
   end
 end
 
-set -Ux EDITOR lvim
+set -Ux EDITOR /opt/homebrew/bin/hx
+
+set PATH /opt/homebrew/opt/llvm/bin:$PATH
+
+set PATH /opt/marksman:$PATH
 
 # Chezmoi cached variables
-set -x CM_computer_name {{ .computer_name }}
-set -x CM_hostname {{ .hostname }}
+set -x CM_computer_name alex
+set -x CM_hostname alex
 
 # use nvm default option
 nvm use default --silent
+
+# add keys to ssh-agent
+ssh-add -A &> /dev/null
+
+# OPENER and EDITOR variables for lf
+set OPENER hx
+set EDITOR hx
