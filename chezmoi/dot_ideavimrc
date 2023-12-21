@@ -2,87 +2,177 @@
 
 " Difference between all the different maps:
 "   https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
+
 " Ideavim actionlist:
 "   https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
-" List of supported plugins:
+
+" List of available plugins:
+"   https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
 "   https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
 "   https://betterprogramming.pub/the-essential-ideavim-plugins-f939b4325180
-"
+
+" IdeaVim Supported set commands
+"   https://raw.githubusercontent.com/wiki/JetBrains/ideavim/set-commands.md
+
+" Map leader key
+let mapleader = ";"
 
 " =================== PLUGINS =========================
-Plug 'terryma/vim-multiple-cursors'
+set NERDTree
+
+set multiple-cursors
 map mc <A-n>
 map mx <A-x>
 map mp <A-p>
 
-Plug 'tpope/vim-commentary'
+" Instructions here https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
+set surround
+" Instructions here https://github.com/tpope/vim-commentary/blob/master/doc/commentary.txt
+set commentary
+" Instructions here https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins#vim-paragraph-motion
+set vim-paragraph-motion
+" Instructions here https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins#highlightedyank
+set highlightedyank
+" Instructions here https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins#easymotion
+set easymotion
+"Disable default mappings
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_override_acejump = 0
 
-Plug 'easymotion/vim-easymotion')
-map <leader>F <Plug>(easymotion-s)
-map <leader>f <Plug>(easymotion-f)
+"f{char} to move to {char}, by-directional
+map f <Plug>(easymotion-bd-f)
+
+" JK motions: Line motions
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
+
+
+" =================== GENERAL CONFIG ==================
+
+"The Escape button
+map <C-c> <Esc>
 
 " built in search looks better
 nnoremap / :action Find<cr>
 " but preserve ideavim search
 nnoremap g/ /
 
-set NERDTree
-nnoremap <c-n> :NERDTreeToggle<CR>
-"nnoremap <c-n> :NERDTreeFocus<CR>
-
-" Map leader key
-let mapleader = ";"
-
-"The Escape button
-map <C-c> <Esc>
-
-map <c-e> <Action>(RecentFiles)
-map <c-c> <Action>(GotoClass)
-map <c-s> <Action>(EditorSelectWord)
-map <c-x> <Action>(Tool_External Tools_LunarVim)
-"map <Leader>s :action SaveAll<CR>
-map <leader>b <Action>(GotoDeclaration)
-map <leader>u :action GotoSuperMethod<CR>
-nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
-nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
-"The Terminal.OpenInTerminal action let you open a new terminal
-"directly in the parent folder of the current file in the editor.
-"This is very useful with deeply nested folder structures, since
-"it avoids having to cd to the right folder."
-nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
-
-set sneak
-set surround
-set noerrorbells
-
-
-" =================== GENERAL CONFIG ==================
-
 "Editing and Reloading the Config
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+
+
+" ================= EDITING MAPPINGS ===================
+nnoremap <space><space> :action ShowHoverInfo<CR>
+nnoremap <TAB> :action NextTab<CR>
+nnoremap <s-TAB> :action PreviousTab<CR>
+nnoremap <PageUp> :action MethodUp<CR>
+nnoremap <PageDown> :action MethodDown<CR>
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+
+nnoremap <leader>a :action ShowIntentionActions<CR>
+nnoremap <leader>c :action CloseProject<CR>
+nnoremap <leader>b :action Back<CR>
+nnoremap <leader>f :action Forward<CR>
+nnoremap <leader>fc :action ReformatCode<CR>
+
+nnoremap <leader>gb :action Annotate<CR>
+nnoremap <leader>gc :action Compare.SameVersion<CR>
+nnoremap <leader>gcp :action Github.Create.Pull.Request<CR>
+nnoremap <leader>gh :action LocalHistory.ShowHistory<CR>
+nnoremap <leader>gl :action GitHub.Copy.Link<CR>
+nnoremap <leader>go :action Github.Open.In.Browser<CR>
+nnoremap <leader>goc :action Github.Open.Commit.In.Browser<CR>
+nnoremap <leader>gp :action Vcs.QuickListPopupAction<CR>
+nnoremap <leader>gr :action ChangesView.Revert<CR>
+nnoremap <leader>gre :action Git.Configure.Remotes<CR>
+nnoremap <leader>gu :action Vcs.RollbackChangedLines<CR>
+
+nnoremap <leader>mr :action MoveTabRight<CR>
+nnoremap <leader>mo :action MoveEditorToOppositeTabGroup<CR>
+
+nnoremap <leader>n :action ActivateProjectToolWindow<CR>
+
+nnoremap <leader>o :action OpenFile<CR>
+
+nnoremap <leader>p :action Markdown.Layout.EditorAndPreview<CR>
+nnoremap <leader>q :action CloseContent<CR>
+nnoremap <leader>qa :action CloseAllEditorsButActive<CR>
+
+nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>re :action RenameElement<CR>
+nnoremap <leader>ru :action Run<CR>
+
+nnoremap <leader>qa :action CloseAllEditors<CR>
+
+nnoremap <leader>s :action FindInPath<CR>
+vnoremap <leader>s :action FindSelectionInPath<CR>
+nnoremap <leader>sv :action SplitVertically<CR>
+nnoremap <leader>sh :action SplitHorizontally<CR>
+nnoremap <leader>st :action Stop<CR>
+
+nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>w :action NextWindow<CR>
+nnoremap <leader>x :action CloseAllEditors<CR>
+nnoremap <leader>u :action Unsplit<CR>
+
+nnoremap gb :action Back<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gf :action Forward<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gl :action GotoLine<CR>
+map      gn :action SelectNextOccurrence<CR>
+nnoremap gp :action GotoPreviousError<CR>
+map      gr :action RecentFiles<CR>
+map      gs :action FileStructurePopup<CR>
+nnoremap gu :action FindUsages<CR>
+
+nnoremap ss :action EditorCodeBlockStart<CR>
+nnoremap se :action EditorCodeBlockEnd<CR>
+nnoremap sse :action EditorCodeBlockEndWithSelection<CR>
+nnoremap sss :action EditorCodeBlockStartWithSelection<CR>
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap zm :action EditorScrollToCenter<CR>
+
+" Shortcutting split navigation
+map <c-h> <C-w>h
+map <c-j> <C-w>j
+map <c-k> <C-w>k
+map <c-l> <C-w>l
+
+
+" ================== VIM USER INTERFACE =================
 
 "Use system clipboard from IdeaVim and vice-versa
 set clipboard+=unnamed
 set clipboard+=ideaput
 
+set noerrorbells
+
 "Enable relative line numbering
 set number relativenumber
 
-" Shows what mode Vim is in at the bottom of intellij
+" Shows what mode Vim is in at the bottom of Intellij
 set showmode
+
+" Shows (partial) command in the status bar
+set showcmd
+
+" Set the IdeaVim icon to grey
+set ideastatusicon=gray
 
 " Uses the joining functionality from Intellij
 set ideajoin
 
 " Stay in the mode in which the editing started
-set idearefactormode=keep
+" https://raw.githubusercontent.com/wiki/JetBrains/ideavim/Select-mode.md
+set idearefactormode=select
 
 " See how many lines of history VIM has to remember
 set history=500
-
-
-" ================== VIM USER INTERFACE =================
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -102,6 +192,9 @@ set smartcase
 
 " Makes search act like search in modern browsers
 set incsearch
+
+" Searches wrap around the end of file
+set wrapscan
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -145,26 +238,8 @@ set wrap "Wrap lines
 
 " =============== MOVING AROUND, TABS, WINDOWS AND BUFFERS ========
 
-" Exit in and out of insert mode easily
-"imap jj <Esc>
-"imap jk <Esc>
-"imap JJ <Esc>
-"imap JK <Esc>
 sethandler <c-j> a:vim
 sethandler <c-k> a:vim
-" Shortcutting split navigation
-map <c-h> <C-w>h
-map <c-j> <C-w>j
-map <c-k> <C-w>k
-map <c-l> <C-w>l
-
-" Tab navigation
-noremap <c-\> :action SplitVertically<CR>
-nnoremap <c--> :action SplitHorizontally<CR>
-nnoremap <c-=> :action Unsplit<CR>
-nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
-
-
 
 " Keep visual selection
 vnoremap < <gv
@@ -174,77 +249,76 @@ vnoremap > >gv
 map [[ <Action>(MethodUp)
 map ]] <Action>(MethodDown)
 
-nnoremap <Leader>e :action EditSourceInNewWindow<CR>
-nnoremap <Leader>n :action NextWindow<CR>
-nnoremap <Leader>q :action CloseContent<CR>
-nnoremap <Leader>qa :action CloseAllEditors<CR>
-
-
-" ================= EDITING MAPPINGS ===================
-
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Code refactoring
-nnoremap gb :action Back<CR>
-nnoremap gf :action Forward<CR>
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gt :action GotoTest<CR>
-nnoremap ge :action GotoNextError<CR>
-nnoremap gE :action GotoPreviousError<CR>
-nnoremap ff :action SearchEverywhere<CR>
-nnoremap fc :action ReformatCode<CR>
-nnoremap zc :action CollapseRegion<CR>
-nnoremap zo :action ExpandRegion<CR>
-nnoremap cc :action CommentByLineComment<CR>
-vnoremap cc :action CommentByLineComment<CR>
-nnoremap <leader>r :action RenameElement<CR>
-nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
-"nnoremap <leader>b :action Vcs.RollbackChangedLines<CR>
-"nnoremap <leader>f :action RenameFile<CR>
-nnoremap <leader>h :action HideAllWindows<CR>
-nnoremap <leader>o :action OptimizeImports<CR>
-nnoremap <leader>c :action CloseAllEditorsButActive<CR>
-nnoremap <leader>zc :action CollapseAllRegions<CR>
-nnoremap <leader>zo :action ExpandAllRegions<CR>
-nnoremap <leader>p :action Refactorings.QuickListPopupAction<CR>
-nnoremap <Leader>=  :action ReformatCode<CR>
-nnoremap <leader>l :action RecentLocations<CR>
-nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>
-nnoremap <c-r> :action RecentFiles<CR>
-nnoremap <space><space> :action ShowErrorDescription<CR>
 
-nnoremap ,a :action GotoAction<CR>
-vnoremap ,a :action GotoAction<CR>
-nnoremap ,u :action Rerun<CR>
-nnoremap ,c :action GotoClass<CR>
-nnoremap ,R :action Run<CR>
-nnoremap ,d :action DebugClass<CR>
-nnoremap ,d :action ContextDebug<CR>
-nnoremap ,D :action Debug<CR>
-nnoremap ,f :action ChooseRunConfiguration<CR>
-nnoremap ,f :action RerunFailedTests<CR>
-nnoremap ,r :action ContextRun<CR>
-nnoremap ,t :action ActivateRunToolWindow<CR>
-nnoremap ,b :action ToggleLineBreakpoint<CR>
-nnoremap ,n :action ActivateDebugToolWindow<CR>
-nnoremap ,q :action CloseContent<CR>
-nnoremap ,x :action CloseAllEditors<CR>
 
-" ================= SEARCH MAPPINGS ===================
-nnoremap <c-/> :action FindInPath<CR>
-nnoremap <c-a> :action GotoAction<CR>
-nnoremap <c-f> :action GotoFile<CR>
-map <leader>u <Action>(FindUsages)
-map <leader>s <Action>(GotoRelated)
-map <leader>h <Action>(CallHierarchy)
+
+" =============== UNUSED BUT SAVED FOR LATER REFERENCE ========
+"set easymotion
+"s{char}{char} to move to {char}{char}
+"nmap s <Plug>(easymotion-s)
+"map <leader>f <Plug>(easymotion-jumptoanywhere)
+"set NERDTree
+"nnoremap <c-n> :NERDTreeToggle<CR>
+"nnoremap <c-n> :NERDTreeFocus<CR>
+
+"nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+
+"The Terminal.OpenInTerminal action let you open a new terminal
+"directly in the parent folder of the current file in the editor.
+"This is very useful with deeply nested folder structures, since
+"it avoids having to cd to the right folder."
+"nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+"nnoremap <c-a> :action GotoAction<CR>
+"nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+"nnoremap <c-r> :action RecentFiles<CR>
+"nnoremap <c-f> :action GotoFile<CR>
+"nnoremap <c-p> :action JumpToLastWindow<CR>
+"map <c-c> <Action>(GotoClass)
+"map <c-s> <Action>(EditorSelectWord)
+"map <c-x> <Action>(Tool_External Tools_LVim)
+"map <leader>s <Action>(GotoRelated)
+"map <leader>h <Action>(CallHierarchy)
+"nnoremap <leader>z :action ToggleZenMode<CR>
+"nnoremap <leader>o :action OptimizeImports<CR>
+"nnoremap <leader>e :action EditSourceInNewWindow<CR>
 "nnoremap <leader>b :action ShowNavBar<CR>
-map <c-s> <Action>(FileStructurePopup)
-map <c-o> <Action>(GotoSymbol)
-
-" ================= WINDOW MAPPINGS ===================
-nnoremap <c-p> :action JumpToLastWindow<CR>
-nnoremap <TAB> :action PreviousTab<CR>
-nnoremap <s-TAB> :action NextTab<CR>
+"nnoremap <leader>e :action Markdown.Layout.EditorOnly<CR>
+"nnoremap gr :action Refactorings.QuickListPopupAction<CR>
+"nnoremap gu :action FindUsages<CR>
+"nnoremap fc :action ReformatCode<CR>
+"nnoremap ff :action FindInPath<CR>
+"nnoremap gp :action GotoPreviousError<CR>
+"nnoremap ga :action ShowIntentionActions<CR>
+"nnoremap sd :action QuickJavaDoc<CR>
+"nnoremap cc :action CommentByLineComment<CR>
+"vnoremap cc :action CommentByLineComment<CR>
+"nnoremap gt :action GotoTest<CR>
+"nnoremap gi :action GotoImplementation<CR>
+"nnoremap ,a :action QuickActions<CR>
+"vnoremap ,a :action gotoaction<cr>
+"nnoremap ,b :action Vcs.RollbackChangedLines<CR>
+"nnoremap ,b :action ToggleLineBreakpoint<CR>
+"nnoremap ,c :action Compare.SameVersion<CR>
+"nnoremap ,c :action gotoclass<cr>
+"nnoremap ,d :action ContextDebug<CR>
+"nnoremap ,D :action Debug<CR>
+"nnoremap ,f :action RerunFailedTests<CR>
+"nnoremap ,f :action ChooseRunConfiguration<CR>
+"nnoremap ,h :action LocalHistory.ShowHistory<CR>
+"nnoremap ,l :action GotoLine<CR>
+"nnoremap ,m :action MoveTabRight<CR>
+"nnoremap ,p :action Refactorings.QuickListPopupAction<CR>
+"nnoremap ,q :action CloseContent<CR>
+"nnoremap ,r :action Run<CR>
+"nnoremap ,s :action Stop<CR>
+"nnoremap ,t :action MoveEditorToOppositeTabGroup<CR>
+"nnoremap ,t :action ActivateRunToolWindow<CR>
+"nnoremap ,u :action FindUsages<CR>
+"nnoremap ,x :action CloseAllEditors<CR>
+"nnoremap ,/ :action SplitVertically<CR>
+"nnoremap ,- :action SplitHorizontally<CR>
+"nnoremap ,= :action Unsplit<CR>
