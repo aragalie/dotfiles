@@ -20,13 +20,15 @@ set -eufo pipefail
 {{ $brews := list -}}
 
 {{ $casks := list
-  "visual-studio-code"
 
+  "chrysalis"
   "docker"
-  "spotify"
+  "istat-menus"
+  "kitty"
   "little-snitch"
   "pdf-expert"
-  "istat-menus"
+  "visual-studio-code"
+  
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF || :
