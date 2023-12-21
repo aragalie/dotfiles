@@ -16,9 +16,6 @@ echo "Install common macOS packages"
 set -eufo pipefail
 
 {{ $taps := list
-  "homebrew/bundle"
-  "homebrew/core"
-  "homebrew/services"
   "homebrew/cask"
   "homebrew/cask-fonts"
   "koekeishiya/formulae"
@@ -26,8 +23,20 @@ set -eufo pipefail
 -}}
 
 {{ $brews := list
+
+  "tmux"
+  "tree"
+
+  "docker"
+  "docker-compose"
+
   "koekeishiya/formulae/yabai"
   "koekeishiya/formulae/skhd"
+
+  "bat"
+  "btop"
+  "chezmoi"
+  "exa"
 
   "openssh"
   "coreutils"

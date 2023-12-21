@@ -1,3 +1,4 @@
+{{- if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env bash
 
 # ~/.macos — https://mths.be/macos
@@ -15,6 +16,7 @@ while true; do
   sleep 60
   kill -0 "$$" || exit
 done 2>/dev/null &
+
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -161,6 +163,8 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bo
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
 sudo systemsetup -settimezone "Europe/Zurich" >/dev/null
 
+# Stop iTunes from responding to the keyboard media keys
+#launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 ###############################################################################
 # Energy saving                                                               #
@@ -173,10 +177,10 @@ sudo systemsetup -settimezone "Europe/Zurich" >/dev/null
 # sudo pmset -a autorestart 1
 
 # # Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+# sudo systemsetup -setrestartfreeze on
 
 # # Sleep the display after 5 minutes
-sudo pmset -a displaysleep 5
+# sudo pmset -a displaysleep 5
 
 # # Disable machine sleep while charging
 # sudo pmset -c sleep 0
@@ -188,7 +192,7 @@ sudo pmset -a displaysleep 5
 # sudo pmset -a standbydelay 86400
 
 # # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+# sudo systemsetup -setcomputersleep Off > /dev/null
 
 # # Hibernation mode
 # # 0: Disable hibernation (speeds up entering sleep mode)
@@ -817,36 +821,6 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 # Randomize port on launch
 defaults write org.m0k.transmission RandomPort -bool true
 
-###############################################################################
-# Twitter.app                                                                 #
-###############################################################################
-
-# Disable smart quotes as it’s annoying for code tweets
-defaults write com.twitter.twitter-mac AutomaticQuoteSubstitutionEnabled -bool false
-
-# Show the app window when clicking the menu bar icon
-defaults write com.twitter.twitter-mac MenuItemBehavior -int 1
-
-# Enable the hidden ‘Develop’ menu
-defaults write com.twitter.twitter-mac ShowDevelopMenu -bool true
-
-# Open links in the background
-defaults write com.twitter.twitter-mac openLinksInBackground -bool true
-
-# Allow closing the ‘new tweet’ window by pressing `Esc`
-defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
-
-# Show full names rather than Twitter handles
-defaults write com.twitter.twitter-mac ShowFullNames -bool true
-
-# Hide the app in the background if it’s not the front-most window
-defaults write com.twitter.twitter-mac HideInBackground -bool true
-
-###############################################################################
-# Tweetbot.app                                                                #
-###############################################################################
-
-# Bypass the annoyingly slow t.co URL shortener
-defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+{{ end -}}
